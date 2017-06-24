@@ -3,12 +3,25 @@
   <head>
     <title>Angular Hello World</title>
     <script src="./node_modules/angular/angular.js"></script>
+    <script type="text/javascript">
+      var app = angular.module("my-app", []);
+      app.controller('MainController', function($scope) {
+        $scope.name = '';
+        $scope.sayGreeting = function() {
+          $scope.message = 'Hello, ' + $scope.name + '!';
+          $scope.name = '';
+        };
+      });
+    </script>
   </head>
   <body>
-    <div ng-app>
-      What is your name?
-      <input type="text" ng-model="name"><br>
-      <label>Hello, {{name}}!</label>
+    <div ng-app="my-app" ng-controller="MainController">
+      What is your name?<br>
+      <form ng-submit="sayGreeting()">
+        <input type="text" ng-model="name">
+        <button>Submit</button><br>
+        {{message}}
+      </form>
     </div>
   </body>
 </html>
