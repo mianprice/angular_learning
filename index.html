@@ -5,9 +5,9 @@
     <script src="./node_modules/angular/angular.js"></script>
     <script type="text/javascript">
       var app = angular.module("my-app", []);
-      app.controller('MainController', function($scope) {
+      app.controller('MainController', ($scope) => {
         $scope.name = '';
-        $scope.sayGreeting = function() {
+        $scope.sayGreeting = () => {
           $scope.message = 'Hello, ' + $scope.name + '!';
           $scope.name = '';
         };
