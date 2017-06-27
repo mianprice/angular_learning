@@ -6,17 +6,17 @@
     <script type="text/javascript">
       var app = angular.module("my-app", []);
       app.controller('MainController', ($scope) => {
-        $scope.name = '';
+        $scope.mainName = '';
         $scope.sayGreeting = () => {
-          $scope.message = 'Hello, ' + $scope.name + '!';
-          $scope.name = '';
+          $scope.message = 'Hello, ' + $scope.mainName + '!';
+          $scope.mainName = '';
         };
       });
       app.controller('SecondController', ($scope) => {
-        $scope.name = '';
+        $scope.secondName = '';
         $scope.sayGoodbye = () => {
-          $scope.message = 'Goodbye, ' + $scope.name + '!';
-          $scope.name = '';
+          $scope.secondMessage = 'Goodbye, ' + $scope.secondName + '!';
+          $scope.secondName = '';
         };
       });
       app.directive('clock', ($interval, dateFilter) => {
@@ -31,6 +31,18 @@
           template: '<span>{{time | date: \'hh:mm:ss\'}}</span>'
         };
       });
+      app.controller('CounterController', ($scope) => {
+        $scope.count = 0;
+        $scope.add = () => {
+          $scope.count ++;
+        };
+        $scope.subtract = () => {
+          $scope.count --;
+        };
+        $scope.reset = () => {
+          $scope.count = 0;
+        };
+      });
     </script>
   </head>
   <body>
@@ -39,7 +51,7 @@
       <div ng-controller="MainController">
         What is your name?<br>
         <form ng-submit="sayGreeting()">
-          <input type="text" ng-model="name">
+          <input type="text" ng-model="mainName">
           <button>Submit</button><br>
           {{message}}
         </form>
@@ -47,10 +59,14 @@
       <div ng-controller="SecondController">
         What is your name?<br>
         <form ng-submit="sayGoodbye()">
-          <input type="text" ng-model="name">
+          <input type="text" ng-model="secondName">
           <button>Submit</button><br>
-          {{message}}
+          {{secondMessage}}
         </form>
+      </div>
+      <div ng-controller="CounterController">
+          <button ng-click="subtract()"> - </button>{{count}}<button ng-click="add()"> + </button><br>
+          <button ng-click="reset()">Reset count</button>
       </div>
     </div>
   </body>
