@@ -43,6 +43,24 @@
           $scope.count = 0;
         };
       });
+      app.controller('TodoController', ($scope) => {
+        $scope.title = '';
+        $scope.description = '';
+        $scope.todos = [];
+        $scope.add = () => {
+          $scope.todos.push({
+            title: $scope.title,
+            description: $scope.description,
+            complete: false
+          });
+        };
+        $scope.complete = (item) => {
+          $scope.todos[($scope.todos.indexOf(item))].complete = true;
+        };
+        $scope.remove = (item) => {
+          $scope.todos.splice(($scope.todos.indexOf(item)), 1);
+        };
+      });
     </script>
   </head>
   <body>
@@ -67,6 +85,20 @@
       <div ng-controller="CounterController">
           <button ng-click="subtract()"> - </button>{{count}}<button ng-click="add()"> + </button><br>
           <button ng-click="reset()">Reset count</button>
+      </div>
+      <div ng-controller="TodoController">
+        <form ng-submit="add()">
+          <input type="text" ng-model="title">
+          <input type="text" ng-model="description">
+          <button>Add Todo</button>
+        </form>
+        <ul>
+          <li ng-repeat="todo in todos">
+            <h3>{{todo.title}}</h3>
+            <p>{{todo.description}}</p>
+            <button ng-click="complete(todo)">Complete</button><button ng-click="remove(todo)">Remove</button>
+          </li>
+        </ul>
       </div>
     </div>
   </body>
