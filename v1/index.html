@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Angular Hello World</title>
+    <title>Angular Testing Ground</title>
     <script src="./node_modules/angular/angular.js"></script>
     <script type="text/javascript">
       var app = angular.module("my-app", []);
@@ -92,6 +92,7 @@
           <input type="text" ng-model="description">
           <button>Add Todo</button>
         </form>
+        <h1>Todo List</h1>
         <ul>
           <li ng-repeat="todo in todos">
             <h3>{{todo.title}}</h3>
